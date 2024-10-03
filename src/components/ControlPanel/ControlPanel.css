@@ -1,0 +1,24 @@
+#form_filter {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-y) var(--gap-x);
+  --gap-x: 0.5rem;
+  --gap-y: 0.25rem;
+  padding: 0.5rem;
+}
+
+#form_filter > * {
+  width: 100%;
+  text-align: left;
+}
+
+#form_filter_date {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: var(--gap-y) var(--gap-x);
+}
+
+#form_search {
+  min-width: 0;
+}

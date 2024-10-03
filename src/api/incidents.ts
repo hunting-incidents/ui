@@ -1,0 +1,93 @@
+import { Filters } from "../components/ControlPanel/ControlPanel";
+import { pagingReq, pagingResp, requestCtrl } from "./type";
+import { GeoJsonObject } from "geojson";
+
+export type Incident = {
+  id: number;
+  incident_type_id: number;
+  incident_target_id: number;
+  incident_cause_id: number;
+  date: string;
+  town_id: number;
+  title: string;
+  description: string;
+  created_at: string;
+  updated_at: string;
+  deleted_at: string;
+  incident_status: string;
+};
+
+/**
+ *  List incidents
+ * @param filter filter applied for listing incidents
+ * @param opt optional request controller
+ * @returns list of incident or null if request is aborted
+ */
+export async function ListIncidents(
+  filter: Filters & pagingReq,
+  opt?: requestCtrl
+): Promise<pagingResp<Incident> | null> {
+  try {
+    const response = await fetch(
+      "/api/incidents?" +
+        new URLSearchParams(
+          Object.entries(filter)
+            .filter(([_, v]) => v !== "")
+            .map(([k, v]) => [k, v.toString()])
+            .toString()
+        ),
+      {
+        ...opt,
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`Error fetching incident: ${response.statusText}`);
+    }
+    const json = (await response.json()) as pagingResp<Incident>;
+    return json;
+  } catch (error) {
+    if ((<Error>error).name === "AbortError") {
+      return null;
+    }
+    console.error(error);
+    return null;
+  }
+}
+
+/**
+ *  Incident geojson
+ * @param filter filter applied for listing incidents
+ * @param opt optional request controller
+ * @returns geojson of incident or null if request is aborted
+ */
+export async function IncidentsGeoJSON(
+  filter: Filters & pagingReq,
+  opt?: requestCtrl
+): Promise<GeoJsonObject | null> {
+  try {
+    const response = await fetch(
+      "/api/incidents/geojson?" +
+        new URLSearchParams(
+          Object.entries(filter)
+            .filter(([_, v]) => v !== "")
+            .map(([k, v]) => [k, v.toString()])
+            .toString()
+        ),
+      {
+        ...opt,
+      }
+    );
+    if (!response.ok) {
+      throw new Error(
+        `Error fetching incident geojson: ${response.statusText}`
+      );
+    }
+    return await response.json();
+  } catch (error) {
+    if ((<Error>error).name === "AbortError") {
+      return null;
+    }
+    console.error(error);
+    return null;
+  }
+}
