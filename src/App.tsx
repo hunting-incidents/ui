@@ -24,7 +24,13 @@ function App() {
   const [page, setPage] = useState(0);
 
   useEffect(() => {
-    ListIncidents({ ...filters, page }).then((resp) => {
+    const controller = new AbortController();
+    ListIncidents(
+      { ...filters, page },
+      {
+        signal: controller.signal,
+      }
+    ).then((resp) => {
       if (resp && resp.data) {
         setIncidents((l) => l.concat(resp.data));
         if (resp.page_size === resp.data.length) {
@@ -32,12 +38,19 @@ function App() {
         }
       }
     });
-  }, [filters, page]);
+    return () => controller.abort();
+  }, [page]);
 
   useEffect(() => {
-    IncidentsGeoJSON(filters).then((data) => {
+    setPage(0);
+    setIncidents([]);
+    const controller = new AbortController();
+    IncidentsGeoJSON(filters, {
+      signal: controller.signal,
+    }).then((data) => {
       setGeojsonData(data);
     });
+    return () => controller.abort();
   }, [filters]);
 
   return (

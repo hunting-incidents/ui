@@ -22,7 +22,7 @@ export const ConfigContext = createContext<Config>({
   incident_causes: [],
 });
 
-export default ({ children }: ConfigProviderProps) => {
+function ConfigProvider({ children }: ConfigProviderProps) {
   const [incident_types, setIncidentTypes] = useState<EnumConfig>([]);
   const [incident_targets, setIncidentTargets] = useState<EnumConfig>([]);
   const [incident_causes, setIncidentCauses] = useState<EnumConfig>([]);
@@ -47,4 +47,6 @@ export default ({ children }: ConfigProviderProps) => {
   return (
     <ConfigContext.Provider value={config}>{children}</ConfigContext.Provider>
   );
-};
+}
+
+export default ConfigProvider;

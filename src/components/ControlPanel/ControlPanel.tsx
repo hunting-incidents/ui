@@ -18,7 +18,7 @@ type ControlPanelProps = {
   setFilters: (filters: Filters) => void;
 };
 
-export default ({ filters, setFilters }: ControlPanelProps) => {
+function ControlPanel({ filters, setFilters }: ControlPanelProps) {
   const config = useContext(ConfigContext);
 
   return (
@@ -131,4 +131,6 @@ export default ({ filters, setFilters }: ControlPanelProps) => {
       </form>
     </div>
   );
-};
+}
+
+export default ControlPanel;

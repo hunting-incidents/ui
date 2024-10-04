@@ -32,9 +32,8 @@ export async function ListIncidents(
       "/api/incidents?" +
         new URLSearchParams(
           Object.entries(filter)
-            .filter(([_, v]) => v !== "")
+            .filter(([, v]) => v !== "")
             .map(([k, v]) => [k, v.toString()])
-            .toString()
         ),
       {
         ...opt,
@@ -69,9 +68,8 @@ export async function IncidentsGeoJSON(
       "/api/incidents/geojson?" +
         new URLSearchParams(
           Object.entries(filter)
-            .filter(([_, v]) => v !== "")
+            .filter(([, v]) => v !== "")
             .map(([k, v]) => [k, v.toString()])
-            .toString()
         ),
       {
         ...opt,

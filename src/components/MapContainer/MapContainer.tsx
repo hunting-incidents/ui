@@ -2,15 +2,30 @@ import { GeoJsonObject } from "geojson";
 import "../../App.css";
 import "leaflet/dist/leaflet.css";
 
-import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
+import {
+  MapContainer as ReactLeafletMapContainer,
+  TileLayer,
+  GeoJSON,
+} from "react-leaflet";
+import { useEffect, useRef } from "react";
+import { GeoJSON as LeafletGeoJSON } from "leaflet";
 
 interface MapContainerProps {
   geojsonData?: GeoJsonObject | null;
 }
 
-export default ({ geojsonData }: MapContainerProps) => {
+function MapContainer({ geojsonData }: MapContainerProps) {
+  const geoJsonRef = useRef<LeafletGeoJSON | null>(null);
+
+  useEffect(() => {
+    if (geojsonData && geoJsonRef.current) {
+      geoJsonRef.current.clearLayers();
+      geoJsonRef.current.addData(geojsonData);
+    }
+  }, [geojsonData]);
+
   return (
-    <MapContainer
+    <ReactLeafletMapContainer
       bounds={[
         [51.124199, -5.142222],
         [42.3521, 9.559167],
@@ -20,12 +35,9 @@ export default ({ geojsonData }: MapContainerProps) => {
       attributionControl={false}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      {geojsonData && <GeoJSON data={geojsonData} />}
-      {/* <Marker position={[51.505, -0.09]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker> */}
-    </MapContainer>
+      {geojsonData && <GeoJSON ref={geoJsonRef} data={geojsonData} />}
+    </ReactLeafletMapContainer>
   );
-};
+}
+
+export default MapContainer;
