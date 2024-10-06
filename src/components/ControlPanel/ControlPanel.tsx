@@ -3,13 +3,13 @@ import { ConfigContext } from "../ConfigProvider/ConfigProvider";
 import "./ControlPanel.css";
 
 export type Filters = {
-  search: string;
-  type: number;
-  target: number;
-  cause: number;
-  dateFrom: string;
-  dateTo: string;
-  townId: number;
+  full_text_search: string;
+  incident_type: number;
+  incident_target: number;
+  incident_cause: number;
+  starting_date: string;
+  ending_date: string;
+  geo_box: string;
   status: "" | "Pending" | "Verified" | "Not_verifiable" | "Rejected";
 };
 
@@ -33,13 +33,17 @@ function ControlPanel({ filters, setFilters }: ControlPanelProps) {
             type="text"
             name="search"
             id="form_search"
-            value={filters.search}
-            onChange={(e) => setFilters({ ...filters, search: e.target.value })}
+            value={filters.full_text_search}
+            onChange={(e) =>
+              setFilters({ ...filters, full_text_search: e.target.value })
+            }
           />
           <label>Type d'incident</label>
           <select
-            value={filters.type}
-            onChange={(e) => setFilters({ ...filters, type: +e.target.value })}
+            value={filters.incident_type}
+            onChange={(e) =>
+              setFilters({ ...filters, incident_type: +e.target.value })
+            }
           >
             <option value={0}>Tous</option>
             {config.incident_types.map((type) => (
@@ -50,9 +54,9 @@ function ControlPanel({ filters, setFilters }: ControlPanelProps) {
           </select>
           <label>Cible d'incident</label>
           <select
-            value={filters.target}
+            value={filters.incident_target}
             onChange={(e) =>
-              setFilters({ ...filters, target: +e.target.value })
+              setFilters({ ...filters, incident_target: +e.target.value })
             }
           >
             <option value={0}>Tous</option>
@@ -68,8 +72,10 @@ function ControlPanel({ filters, setFilters }: ControlPanelProps) {
           </select>
           <label>Cause d'incident</label>
           <select
-            value={filters.cause}
-            onChange={(e) => setFilters({ ...filters, cause: +e.target.value })}
+            value={filters.incident_cause}
+            onChange={(e) =>
+              setFilters({ ...filters, incident_cause: +e.target.value })
+            }
           >
             <option value={0}>Tous</option>
             {config.incident_causes.map((cause) => (
@@ -87,18 +93,18 @@ function ControlPanel({ filters, setFilters }: ControlPanelProps) {
             <input
               type="date"
               name="date"
-              value={filters.dateFrom}
+              value={filters.starting_date}
               onChange={(e) =>
-                setFilters({ ...filters, dateFrom: e.target.value })
+                setFilters({ ...filters, starting_date: e.target.value })
               }
             />
             <label>Au :</label>
             <input
               type="date"
               name="date"
-              value={filters.dateTo}
+              value={filters.ending_date}
               onChange={(e) =>
-                setFilters({ ...filters, dateTo: e.target.value })
+                setFilters({ ...filters, ending_date: e.target.value })
               }
             />
           </div>

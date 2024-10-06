@@ -1,6 +1,6 @@
 import { Filters } from "../components/ControlPanel/ControlPanel";
 import { pagingReq, pagingResp, requestCtrl } from "./type";
-import { GeoJsonObject } from "geojson";
+import { GeoJsonObject, FeatureCollection } from "geojson";
 
 export type Incident = {
   id: number;
@@ -62,7 +62,7 @@ export async function ListIncidents(
 export async function IncidentsGeoJSON(
   filter: Filters & pagingReq,
   opt?: requestCtrl
-): Promise<GeoJsonObject | null> {
+): Promise<(GeoJsonObject & FeatureCollection) | null> {
   try {
     const response = await fetch(
       "/api/incidents/geojson?" +

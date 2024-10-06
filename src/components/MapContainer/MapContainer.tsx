@@ -1,4 +1,4 @@
-import { GeoJsonObject } from "geojson";
+import { GeoJsonObject, FeatureCollection } from "geojson";
 import "../../App.css";
 import "leaflet/dist/leaflet.css";
 
@@ -11,7 +11,7 @@ import { useEffect, useRef } from "react";
 import { GeoJSON as LeafletGeoJSON } from "leaflet";
 
 interface MapContainerProps {
-  geojsonData?: GeoJsonObject | null;
+  geojsonData?: (GeoJsonObject & FeatureCollection) | null;
 }
 
 function MapContainer({ geojsonData }: MapContainerProps) {

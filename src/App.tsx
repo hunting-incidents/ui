@@ -4,22 +4,24 @@ import ConfigProvider from "./components/ConfigProvider/ConfigProvider";
 import ControlPanel, { Filters } from "./components/ControlPanel/ControlPanel";
 import MapContainer from "./components/MapContainer/MapContainer";
 import { Incident, IncidentsGeoJSON, ListIncidents } from "./api/incidents";
-import { GeoJsonObject } from "geojson";
+import { GeoJsonObject, FeatureCollection } from "geojson";
 
 function App() {
   const [filters, setFilters] = useState<Filters>({
-    search: "",
-    type: 0,
-    target: 0,
-    cause: 0,
-    dateFrom: "",
-    dateTo: "",
-    townId: 0,
+    full_text_search: "",
+    incident_type: 0,
+    incident_target: 0,
+    incident_cause: 0,
+    starting_date: "",
+    ending_date: "",
+    geo_box: "",
     status: "",
   });
 
   const [incidents, setIncidents] = useState<Incident[]>([]);
-  const [geojsonData, setGeojsonData] = useState<GeoJsonObject | null>(null);
+  const [geojsonData, setGeojsonData] = useState<
+    (GeoJsonObject & FeatureCollection) | null
+  >(null);
 
   const [page, setPage] = useState(0);
 
