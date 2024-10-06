@@ -5,6 +5,7 @@ import ControlPanel, { Filters } from "./components/ControlPanel/ControlPanel";
 import MapContainer from "./components/MapContainer/MapContainer";
 import { Incident, IncidentsGeoJSON, ListIncidents } from "./api/incidents";
 import { GeoJsonObject, FeatureCollection } from "geojson";
+import { useDebounce } from "@uidotdev/usehooks";
 
 function App() {
   const [filters, setFilters] = useState<Filters>({
@@ -17,6 +18,18 @@ function App() {
     geo_box: "",
     status: "",
   });
+
+  function refreshIncidents() {
+    setPage(0);
+    setIncidents([]);
+    const controller = new AbortController();
+    IncidentsGeoJSON(filters, {
+      signal: controller.signal,
+    }).then((data) => {
+      setGeojsonData(data);
+    });
+    return () => controller.abort();
+  }
 
   const [incidents, setIncidents] = useState<Incident[]>([]);
   const [geojsonData, setGeojsonData] = useState<
@@ -43,17 +56,11 @@ function App() {
     return () => controller.abort();
   }, [page]);
 
+  const debouncedFilters = useDebounce(filters, 500);
+
   useEffect(() => {
-    setPage(0);
-    setIncidents([]);
-    const controller = new AbortController();
-    IncidentsGeoJSON(filters, {
-      signal: controller.signal,
-    }).then((data) => {
-      setGeojsonData(data);
-    });
-    return () => controller.abort();
-  }, [filters]);
+    refreshIncidents();
+  }, [debouncedFilters]);
 
   return (
     <ConfigProvider>
