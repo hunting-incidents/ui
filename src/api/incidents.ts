@@ -1,4 +1,4 @@
-import { Filters } from "../components/ControlPanel/ControlPanel";
+import { Filters } from "../components/HomeView/ControlPanel/ControlPanel";
 import { pagingReq, pagingResp, requestCtrl } from "./type";
 import { GeoJsonObject, FeatureCollection } from "geojson";
 

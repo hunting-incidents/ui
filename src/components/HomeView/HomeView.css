@@ -4,3 +4,9 @@
   width: 100vw;
   height: 100vh;
 }
+
+#homeView {
+  display: grid;
+  grid-template-columns: 20% 1fr;
+  height: 100%;
+}

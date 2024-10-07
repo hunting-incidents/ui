@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ConfigContext } from "../ConfigProvider/ConfigProvider";
+import { ConfigContext } from "../../ConfigProvider/ConfigProvider";
 import "./ControlPanel.css";
 
 export type Filters = {

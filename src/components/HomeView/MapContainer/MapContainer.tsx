@@ -1,5 +1,4 @@
 import { GeoJsonObject, FeatureCollection } from "geojson";
-import "../../App.css";
 import "leaflet/dist/leaflet.css";
 
 import {
