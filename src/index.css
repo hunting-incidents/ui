@@ -5,12 +5,17 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: var(--background-color);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --color-primary: #153e38;
+  --background-color: oklab(from var(--color-primary) 10% a b);
+  --card-border-color: oklab(from var(--color-primary) 5% a b);
+  --card-background-color: oklab(from var(--color-primary) 20% a b);
 }
 
 html {
@@ -26,7 +31,9 @@ html {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    --background-color: oklab(from var(--color-primary) 90% a b);
+    --card-border-color: oklab(from var(--color-primary) 95% a b);
+    --card-background-color: oklab(from var(--color-primary) 80% a b);
   }
   a:hover {
     color: #747bff;
@@ -34,4 +41,12 @@ html {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.card {
+  border: 1px solid var(--card-border-color);
+  border-radius: 0.5rem;
+  background-color: var(--card-background-color);
+  padding: 1rem;
+  margin-bottom: 1rem;
 }

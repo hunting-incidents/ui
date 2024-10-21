@@ -22,10 +22,10 @@ function ControlPanel({ filters, setFilters }: ControlPanelProps) {
   const config = useContext(ConfigContext);
 
   return (
-    <div>
+    <div className="control-panel card">
       <form>
-        <h2>Filter les incidents</h2>
-        <div id="form_filter">
+        <h2>Filtrer les incidents</h2>
+        <div id="form_filter" className="card">
           <label htmlFor="form_search" title="Recherche parmi les incidents">
             Rechercher :
           </label>
