@@ -19,17 +19,7 @@ function HomeView() {
     status: "",
   });
 
-  function refreshIncidents() {
-    setPage(0);
-    setIncidents([]);
-    const controller = new AbortController();
-    IncidentsGeoJSON(filters, {
-      signal: controller.signal,
-    }).then((data) => {
-      setGeojsonData(data);
-    });
-    return () => controller.abort();
-  }
+  const debouncedFilters = useDebounce(filters, 500);
 
   const [incidents, setIncidents] = useState<Incident[]>([]);
   const [geojsonData, setGeojsonData] = useState<
@@ -37,8 +27,13 @@ function HomeView() {
   >(null);
 
   const [page, setPage] = useState(0);
+  const [allLoaded, setAllLoaded] = useState(false);
 
+  // TODO: create infite scroll not to load all incidents at once
   useEffect(() => {
+    if (allLoaded) {
+      return;
+    }
     const controller = new AbortController();
     ListIncidents(
       { ...filters, page },
@@ -50,16 +45,25 @@ function HomeView() {
         setIncidents((l) => l.concat(resp.data));
         if (resp.page_size === resp.data.length) {
           setPage((p) => p + 1);
+        } else {
+          setAllLoaded(true);
         }
       }
     });
     return () => controller.abort();
-  }, [page]);
-
-  const debouncedFilters = useDebounce(filters, 500);
+  }, [page, allLoaded]);
 
   useEffect(() => {
-    refreshIncidents();
+    setPage(0);
+    setAllLoaded(false);
+    setIncidents([]);
+    const controller = new AbortController();
+    IncidentsGeoJSON(filters, {
+      signal: controller.signal,
+    }).then((data) => {
+      setGeojsonData(data);
+    });
+    return () => controller.abort();
   }, [debouncedFilters]);
 
   return (
