@@ -1,3 +1,15 @@
 div.incident-list > div {
   text-align: "left";
 }
+
+div.incident-list > ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+div.incident-list > ul > li:not(:last-child):after {
+  content: "";
+  display: block;
+  border-bottom: 1px solid oklab(from var(--color-primary) 40% a b);
+  margin: 0.5rem 0;
+}

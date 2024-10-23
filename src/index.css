@@ -3,8 +3,8 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color-scheme: light;
+  color: rgb(0, 0, 0);
   background-color: var(--background-color);
 
   font-synthesis: none;
@@ -13,9 +13,9 @@
   -moz-osx-font-smoothing: grayscale;
 
   --color-primary: #153e38;
-  --background-color: oklab(from var(--color-primary) 10% a b);
+  --background-color: oklab(from var(--color-primary) 80% a b);
   --card-border-color: oklab(from var(--color-primary) 5% a b);
-  --card-background-color: oklab(from var(--color-primary) 20% a b);
+  --card-background-color: oklab(from var(--color-primary) 90% a b);
 }
 
 html {
@@ -26,21 +26,6 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    --background-color: oklab(from var(--color-primary) 90% a b);
-    --card-border-color: oklab(from var(--color-primary) 95% a b);
-    --card-background-color: oklab(from var(--color-primary) 80% a b);
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
 
 .card {
