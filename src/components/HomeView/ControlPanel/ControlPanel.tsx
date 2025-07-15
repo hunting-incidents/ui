@@ -1,16 +1,25 @@
-import { useContext } from "react";
-import { ConfigContext } from "../../ConfigProvider/ConfigProvider";
 import "./ControlPanel.css";
+// Ajout des imports nécessaires
+import {
+  IncidentType,
+  IncidentTarget,
+  IncidentCause,
+  IncidentStatus,
+  getIncidentTypeMap,
+  getIncidentTargetMap,
+  getIncidentCauseMap,
+  getIncidentStatusMap,
+} from "../../../api/enum";
 
 export type Filters = {
   full_text_search: string;
-  incident_type: number;
-  incident_target: number;
-  incident_cause: number;
+  incident_type: IncidentType | "";
+  incident_target: IncidentTarget | "";
+  incident_cause: IncidentCause | "";
   starting_date: string;
   ending_date: string;
   geo_box: string;
-  status: "" | "Pending" | "Verified" | "Not_verifiable" | "Rejected";
+  status: "" | IncidentStatus;
 };
 
 type ControlPanelProps = {
@@ -19,7 +28,11 @@ type ControlPanelProps = {
 };
 
 function ControlPanel({ filters, setFilters }: ControlPanelProps) {
-  const config = useContext(ConfigContext);
+  // Utilisation des maps pour les options
+  const incidentTypeMap = getIncidentTypeMap();
+  const incidentTargetMap = getIncidentTargetMap();
+  const incidentCauseMap = getIncidentCauseMap();
+  const incidentStatusMap = getIncidentStatusMap();
 
   return (
     <div className="control-panel card">
@@ -42,13 +55,16 @@ function ControlPanel({ filters, setFilters }: ControlPanelProps) {
           <select
             value={filters.incident_type}
             onChange={(e) =>
-              setFilters({ ...filters, incident_type: +e.target.value })
+              setFilters({
+                ...filters,
+                incident_type: e.target.value as IncidentType | "",
+              })
             }
           >
-            <option value={0}>Tous</option>
-            {config.incident_types.map((type) => (
-              <option key={type.id} value={type.id} title={type.description}>
-                {type.name}
+            <option value="">Tous</option>
+            {Object.entries(incidentTypeMap).map(([key, val]) => (
+              <option key={key} value={key} title={val.description}>
+                {val.name}
               </option>
             ))}
           </select>
@@ -56,17 +72,16 @@ function ControlPanel({ filters, setFilters }: ControlPanelProps) {
           <select
             value={filters.incident_target}
             onChange={(e) =>
-              setFilters({ ...filters, incident_target: +e.target.value })
+              setFilters({
+                ...filters,
+                incident_target: e.target.value as IncidentTarget | "",
+              })
             }
           >
-            <option value={0}>Tous</option>
-            {config.incident_targets.map((target) => (
-              <option
-                key={target.id}
-                value={target.id}
-                title={target.description}
-              >
-                {target.name}
+            <option value="">Tous</option>
+            {Object.entries(incidentTargetMap).map(([key, val]) => (
+              <option key={key} value={key} title={val.description}>
+                {val.name}
               </option>
             ))}
           </select>
@@ -74,13 +89,16 @@ function ControlPanel({ filters, setFilters }: ControlPanelProps) {
           <select
             value={filters.incident_cause}
             onChange={(e) =>
-              setFilters({ ...filters, incident_cause: +e.target.value })
+              setFilters({
+                ...filters,
+                incident_cause: e.target.value as IncidentCause | "",
+              })
             }
           >
-            <option value={0}>Tous</option>
-            {config.incident_causes.map((cause) => (
-              <option key={cause.id} value={cause.id} title={cause.description}>
-                {cause.name}
+            <option value="">Tous</option>
+            {Object.entries(incidentCauseMap).map(([key, val]) => (
+              <option key={key} value={key} title={val.description}>
+                {val.name}
               </option>
             ))}
           </select>
@@ -123,15 +141,16 @@ function ControlPanel({ filters, setFilters }: ControlPanelProps) {
             onChange={(e) =>
               setFilters({
                 ...filters,
-                status: e.target.value as Filters["status"],
+                status: e.target.value as IncidentStatus | "",
               })
             }
           >
             <option value="">Tous</option>
-            <option value="Pending">En attente</option>
-            <option value="Verified">Vérifié</option>
-            <option value="Not_verifiable">Non vérifiable</option>
-            <option value="Rejected">Rejeté</option>
+            {Object.entries(incidentStatusMap).map(([key, val]) => (
+              <option key={key} value={key} title={val.description}>
+                {val.name}
+              </option>
+            ))}
           </select>
         </div>
       </form>

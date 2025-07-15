@@ -1,12 +1,13 @@
 import { Filters } from "../components/HomeView/ControlPanel/ControlPanel";
+import { IncidentCause, IncidentTarget, IncidentType } from "./enum";
 import { pagingReq, pagingResp, requestCtrl } from "./type";
 import { GeoJsonObject, FeatureCollection } from "geojson";
 
 export type Incident = {
   id: number;
-  incident_type_id: number;
-  incident_target_id: number;
-  incident_cause_id: number;
+  incident_type: IncidentType;
+  incident_target: IncidentTarget;
+  incident_cause: IncidentCause;
   date: string;
   town_id: number;
   title: string;
@@ -16,6 +17,8 @@ export type Incident = {
   deleted_at: string;
   incident_status: string;
 };
+
+// FIXME: filter should be defined here (as an interface ?)
 
 /**
  *  List incidents
