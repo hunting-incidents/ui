@@ -10,9 +10,9 @@ import IncidentList from "./IncidentList/IncidentList";
 function HomeView() {
   const [filters, setFilters] = useState<Filters>({
     full_text_search: "",
-    incident_type: 0,
-    incident_target: 0,
-    incident_cause: 0,
+    incident_type: "",
+    incident_target: "",
+    incident_cause: "",
     starting_date: "",
     ending_date: "",
     geo_box: "",

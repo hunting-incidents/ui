@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { Incident } from "../../../api/incidents";
 import "./IncidentList.css";
 import {
@@ -7,30 +6,26 @@ import {
   GiSawedOffShotgun,
   GiShatteredGlass,
 } from "react-icons/gi";
-import { ConfigContext } from "../../ConfigProvider/ConfigProvider";
+import { IncidentType } from "../../../api/enum";
 
 interface IncidentListProps {
   incidents: Incident[];
 }
 
 function IncidentList({ incidents }: IncidentListProps) {
-  const config = useContext(ConfigContext);
-
-  function TypeToIcon(type: number) {
-    const name = config.incident_types.find((t) => t.id === type)?.name;
-
-    switch (name?.toLowerCase()) {
-      case "mort":
+  function TypeToIcon(type: IncidentType) {
+    switch (type) {
+      case IncidentType.DEATH:
         return (
           <GiGraveFlowers size={"2rem"} style={{ marginRight: ".5rem" }} />
         );
-      case "menace":
+      case IncidentType.MENACE:
         return (
           <GiSawedOffShotgun size={"2rem"} style={{ marginRight: ".5rem" }} />
         );
-      case "blessure":
+      case IncidentType.INJURY:
         return <GiBrokenBone size={"2rem"} style={{ marginRight: ".5rem" }} />;
-      case "destruction":
+      case IncidentType.DESTRUCTION:
         return (
           <GiShatteredGlass size={"2rem"} style={{ marginRight: ".5rem" }} />
         );
@@ -50,7 +45,7 @@ function IncidentList({ incidents }: IncidentListProps) {
         {incidents.map((incident) => (
           <li key={incident.id}>
             <h3>
-              {TypeToIcon(incident.incident_type_id)}
+              {TypeToIcon(incident.incident_type)}
               {incident.title}
             </h3>
             <p>{incident.description}</p>
