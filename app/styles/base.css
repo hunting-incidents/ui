@@ -1,0 +1,10 @@
+@layer base {
+  h2 {
+    font-size: var(--text-3xl);
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    font-weight: bold;
+  }
+}

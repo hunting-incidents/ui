@@ -1,5 +1,5 @@
-import type { Route } from "./+types/home";
 import { Link, Outlet } from "react-router";
+import type { Route } from "./+types/route";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -29,7 +29,7 @@ export default function Layout() {
           </div>
         </Link>
       </header>
-      <main className="grow">
+      <main className="grow overflow-auto">
         <Outlet />
       </main>
       <footer className="flex items-center gap-3 px-1 py-1 justify-end bg-footer-bg text-sm">
