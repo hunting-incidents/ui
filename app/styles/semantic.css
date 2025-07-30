@@ -1,0 +1,21 @@
+@theme {
+  /* Arrière-plans */
+  --color-footer-bg: var(--color-butterfly-bush-800);
+  --color-header-bg: var(--color-te-papa-green-900);
+  --color-primary-bg: var(--color-te-papa-green-100);
+  --color-secondary-bg: var(--color-te-papa-green-100);
+
+  /* Textes */
+  --color-primary-text: var(--color-butterfly-bush-950);
+  --color-secondary-text: var(--color-te-papa-green-950);
+  --color-primary-light-text: var(--color-te-papa-green-50);
+  --color-secondary-light-text: var(--color-butterfly-bush-50);
+
+  /* Bordures */
+  --color-primary-stroke: var(--color-butterfly-bush-800);
+  --color-secondary-stroke: var(--color-te-papa-green-900);
+
+  /* Formulaires */
+  --color-form-input-bg: var(--color-neutral-200);
+  --color-form-input-bg-hover: var(--color-neutral-400);
+}

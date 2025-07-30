@@ -1,0 +1,54 @@
+@theme {
+  /* Couleurs génériques */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Couleurs principales */
+  --color-primary: #153e38;
+  --color-secondary: #615686;
+
+  /* Te Papa Green */
+  --color-te-papa-green-50: #f1fcf8;
+  --color-te-papa-green-100: #d0f7eb;
+  --color-te-papa-green-200: #a2edd9;
+  --color-te-papa-green-300: #6bddc2;
+  --color-te-papa-green-400: #3dc4a8;
+  --color-te-papa-green-500: #23a98f;
+  --color-te-papa-green-600: #1a8775;
+  --color-te-papa-green-700: #196c5f;
+  --color-te-papa-green-800: #18574e;
+  --color-te-papa-green-900: #153e38;
+  --color-te-papa-green-950: #082b27;
+
+  /* Butterfly Bush */
+  --color-butterfly-bush-50: #f5f5f9;
+  --color-butterfly-bush-100: #e7e7f2;
+  --color-butterfly-bush-200: #d6d5e8;
+  --color-butterfly-bush-300: #b8b8d8;
+  --color-butterfly-bush-400: #9595c5;
+  --color-butterfly-bush-500: #807cb5;
+  --color-butterfly-bush-600: #7269a7;
+  --color-butterfly-bush-700: #695e97;
+  --color-butterfly-bush-800: #615686;
+  --color-butterfly-bush-900: #4a4365;
+  --color-butterfly-bush-950: #312c3f;
+
+  /* Neutral */
+  --color-neutral-50: #f9faf9;
+  --color-neutral-100: #f0f2f1;
+  --color-neutral-200: #dee1e1;
+  --color-neutral-300: #c7cacc;
+  --color-neutral-400: #a9adb0;
+  --color-neutral-500: #8e9397;
+  --color-neutral-600: #70757a;
+  --color-neutral-700: #555a5f;
+  --color-neutral-800: #3c4045;
+  --color-neutral-900: #292c30;
+  --color-neutral-950: #181a1d;
+
+  /* Événements */
+  --color-event-death: #091c19;
+  --color-event-hurt: #1a2986;
+  --color-event-menace: #20a793;
+  --color-event-other: #bdb12a;
+}
