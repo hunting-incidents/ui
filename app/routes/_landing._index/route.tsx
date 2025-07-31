@@ -1,4 +1,4 @@
-import { Welcome } from "../../welcome/welcome";
+import { Map } from "../../components/Map";
 import type { Route } from "./+types/route";
 
 export function meta({}: Route.MetaArgs) {
@@ -9,5 +9,9 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  return <Welcome />;
+  return (
+    <main className="h-screen w-full">
+      <Map className="w-full h-full" />
+    </main>
+  );
 }

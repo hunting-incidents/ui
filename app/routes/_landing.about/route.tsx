@@ -1,5 +1,4 @@
 import BackButton from "../../components/BackButton/BackButton";
-import { Welcome } from "../../welcome/welcome";
 import type { Route } from "./+types/route";
 
 export function meta({}: Route.MetaArgs) {
