@@ -1,87 +1,77 @@
-# Welcome to React Router!
+# Hunting Incident UI
 
-A modern, production-ready template for building full-stack React applications using React Router.
+This repository contains the user interface for the hunting incident management system.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+## 🚀 Quick Start
 
-## Features
+### Prerequisites
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
-
-## Getting Started
+- Node.js (v18 or higher)
+- pnpm (recommended package manager)
 
 ### Installation
 
-Install the dependencies:
-
+1. Install dependencies:
 ```bash
-npm install
+pnpm install
 ```
 
 ### Development
 
-Start the development server with HMR:
-
+To start the development server:
 ```bash
-npm run dev
+pnpm dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+The application will be available at `http://localhost:5173`
 
-## Building for Production
+### Build
 
-Create a production build:
-
+To build the project for production:
 ```bash
-npm run build
+pnpm build
 ```
 
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
+To start the production server:
 ```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
+pnpm start
 ```
 
-The containerized application can be deployed to any platform that supports Docker, including:
+### Type Checking
 
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+To run TypeScript type checking:
+```bash
+pnpm typecheck
 ```
 
-## Styling
+## 🛠️ Tech Stack
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+### Core Framework
+- **React Router v7** - Full-stack React framework with file-based routing
+- **React 19** - Latest React version with concurrent features
+- **TypeScript** - Type-safe JavaScript development
+- **Vite** - Fast build tool and development server
 
----
+### Styling & UI
+- **Tailwind CSS v4** - Utility-first CSS framework with modern features
+- **CSS Modules** - Component-scoped styling
 
-Built with ❤️ using React Router.
+### Mapping & Visualization
+- **Leaflet** - Interactive maps library
+- **React Leaflet** - React components for Leaflet maps
+
+### Features
+- **Server-Side Rendering (SSR)** - Enabled by default for better SEO and performance
+- **File-based Routing** - Automatic route generation based on file structure
+- **Hot Module Replacement (HMR)** - Fast development experience
+- **TypeScript Support** - Full type checking and IntelliSense
+
+## ⚙️ Configuration
+
+- **React Router Config**: `react-router.config.ts` - SSR and routing configuration
+- **Vite Config**: `vite.config.ts` - Build tool and plugin configuration
+- **TypeScript Config**: `tsconfig.json` - TypeScript compilation settings
+
+## 🐳 Docker
+
+The project includes a Dockerfile for containerized deployment. Check the Dockerfile for container build instructions.
