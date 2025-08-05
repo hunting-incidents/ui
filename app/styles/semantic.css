@@ -18,4 +18,8 @@
   /* Formulaires */
   --color-form-input-bg: var(--color-neutral-200);
   --color-form-input-bg-hover: var(--color-neutral-400);
+
+  /* Button */
+  --color-button-stroke: var(--color-secondary);
+  --color-button-stroke-hover: var(--color-butterfly-bush-400);
 }

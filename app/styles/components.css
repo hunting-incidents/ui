@@ -1,0 +1,10 @@
+@layer components {
+  button.svg-btn-secondary {
+    @apply fill-secondary 
+    stroke-secondary
+     hover:fill-button-stroke-hover
+     hover:stroke-button-stroke-hover
+      transition-colors
+       duration-100;
+  }
+}
